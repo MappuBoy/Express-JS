@@ -26,7 +26,7 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/',(req,res)=>{
-    
+
     const id=req.body.id
     const firstname=req.body.firstname
     const lastname=req.body.lastname
@@ -39,7 +39,7 @@ router.post('/',(req,res)=>{
     const longvalue=req.body.longvalue
     const mobilenumber=req.body.mobilenumber
  
-   var query="INSERT INTO customer (id,name) VALUES (?,?)";
+   var query="INSERT INTO customer (id,firstname,lastname,email,city,street,streetnumber,zipcode,latvalue,longvalue,mobilenumber) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
    connection.query(query,[id,firstname,lastname,email,city,street,streetnumber,zipcode,latvalue,longvalue,mobilenumber],(err)=>{
     if(err){
@@ -63,7 +63,7 @@ router.put('/',(req,res)=>{
     const longvalue=req.body.longvalue
     const mobilenumber=req.body.mobilenumber
  
-    var query="UPDATE customer SET name=? WHERE id=?";
+    var query="UPDATE customer SET firstname=?,lastname=?,email=?,city,street=?,streetnumber=?,zipcode=?,latvalue=?,longvalue=?,mobilenumber=? WHERE id=?";
     connection.query(query,[firstname,lastname,email,city,street,streetnumber,zipcode,latvalue,longvalue,mobilenumber,id],(err,row)=>{
       if(err)throw err;
       res.send(row)
