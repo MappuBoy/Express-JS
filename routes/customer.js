@@ -8,7 +8,7 @@ connection.connect(function(err){
     if(err){
         console.log(err);
     }else{
-        var customertable="CREATE TABLE IF NOT EXISTS customer(id varchar(255) PRIMARY KEY,name varchar(255))"
+        var customertable="CREATE TABLE IF NOT EXISTS customer(id varchar(255) PRIMARY KEY,firstname varchar(255), lastname varchar(255), email varchar(255), city varchar(255), street varchar(255), streetnumber varchar(255), zipcode varchar(255), latvalue varchar(255), longvalue varchar(255), mobilenumber varchar(255))"
     connection.query(customertable,function(err,result){
         console.log("Connect database");
     })
@@ -26,12 +26,22 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/',(req,res)=>{
-   const id=req.body.id
-   const name=req.body.name
-
+    
+    const id=req.body.id
+    const firstname=req.body.firstname
+    const lastname=req.body.lastname
+    const email=req.body.email
+    const city=req.body.city
+    const street=req.body.street
+    const streetnumber=req.body.streetnumber
+    const zipcode=req.body.zipcode
+    const latvalue=req.body.latvalue
+    const longvalue=req.body.longvalue
+    const mobilenumber=req.body.mobilenumber
+ 
    var query="INSERT INTO customer (id,name) VALUES (?,?)";
 
-   connection.query(query,[id,name],(err)=>{
+   connection.query(query,[id,firstname,lastname,email,city,street,streetnumber,zipcode,latvalue,longvalue,mobilenumber],(err)=>{
     if(err){
         res.send("Customer ALREADY save")
     }else{
@@ -42,10 +52,19 @@ router.post('/',(req,res)=>{
 })
 router.put('/',(req,res)=>{
     const id=req.body.id
-    const name=req.body.name
+    const firstname=req.body.firstname
+    const lastname=req.body.lastname
+    const email=req.body.email
+    const city=req.body.city
+    const street=req.body.street
+    const streetnumber=req.body.streetnumber
+    const zipcode=req.body.zipcode
+    const latvalue=req.body.latvalue
+    const longvalue=req.body.longvalue
+    const mobilenumber=req.body.mobilenumber
  
     var query="UPDATE customer SET name=? WHERE id=?";
-    connection.query(query,[name,id],(err,row)=>{
+    connection.query(query,[firstname,lastname,email,city,street,streetnumber,zipcode,latvalue,longvalue,mobilenumber,id],(err,row)=>{
       if(err)throw err;
       res.send(row)
        })
