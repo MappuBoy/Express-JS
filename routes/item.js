@@ -54,7 +54,7 @@ router.put('/',(req,res)=>{
     const catagory=req.body.catagory
     const qtyonhand=req.body.qtyonhand
  
-    var query="UPDATE item SET title=?,discription=?,price=?,catagory=?,street=?,qtyonhandid=? WHERE id=?";
+    var query="UPDATE item SET title=?,discription=?,price=?,catagory=?,qtyonhandid=? WHERE id=?";
     connection.query(query,[title,discription,price,catagory,qtyonhand,id],(err,row)=>{
       if(err)throw err;
       res.send(row)
