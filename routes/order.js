@@ -87,3 +87,5 @@ router.get('/:id',(res,req)=>{
         }
     })
 })
+
+module.exports=router
